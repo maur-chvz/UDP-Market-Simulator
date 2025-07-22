@@ -6,6 +6,27 @@ A high-performance C++ simulation engine that emulates real-time market data fee
 
 ---
 
+##  System Architecture
+
+```
+┌─────────────┐    ┌──────────────┐    ┌─────────────┐
+│   NYSE      │    │   NASDAQ     │    │   Future    │
+│ Simulator   │    │  Simulator   │    │ Exchanges   │
+└──────┬──────┘    └──────┬───────┘    └─────────────┘
+       │                  │                     
+       │ UDP Multicast    │ UDP Multicast       
+       │ 224.1.1.1:9001   │ 224.1.1.2:9002     
+       │                  │                     
+       └────────┬─────────┘                     
+                │                               
+         ┌──────▼──────┐                        
+         │   Market    │                        
+         │    Data     │                        
+         │ Subscribers │                        
+         └─────────────┘
+```
+---
+
 ## Key Features
 
 ### Multi-Exchange Support
